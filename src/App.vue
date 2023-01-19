@@ -5,7 +5,8 @@
 <template>
   <div class="mainContainer">
     <div class="leftCardContainer">
-      <b-card no-body style="max-width: 20rem;" img-src="https://i.imgur.com/6pyE2HN.jpg" img-alt="Image" img-top>
+      <b-card no-body style="max-width: 20rem;">
+        <b-avatar class="avatar" src="https://i.imgur.com/6pyE2HN.jpg" size="15rem"></b-avatar>
         <b-card-body>
           <b-card-title>Samuel Nicklaus</b-card-title>
           <b-card-sub-title class="h5 mb-2">Info</b-card-sub-title>
@@ -37,32 +38,38 @@
               <p class="h4 mb-2"><b-icon icon="linkedin"></b-icon> LinkedIn</p>
               <b-card-sub-title class="mb-2"><a href="https://www.linkedin.com/in/sam-nicklaus/">linkedin.com/sam-nicklaus</a></b-card-sub-title>
             </b-list-group-item>
-            <b-list-group-item>
-              <p class="h4 mb-2"><b-icon icon="person-fill"></b-icon> Birthday</p>
-              <b-card-sub-title class="mb-2">Feb 6, 2002</b-card-sub-title>
-            </b-list-group-item>
-            <b-list-group-item>
-              <p class="h4 mb-2"><b-icon icon="pin-map-fill"></b-icon> Residence</p>
-              <b-card-sub-title class="mb-2">Iowa City, Iowa</b-card-sub-title>
-            </b-list-group-item>
           </b-list-group>
         </b-card-body>
       </b-card>
     </div>
     <div class="rightCardContainer">
-
+      <b-card>
+        <b-card-sub-title class="mb-2">Test text</b-card-sub-title>
+        </b-card>
     </div>
   </div>
 </template>
 
 <style>
 .leftCardContainer {
-  margin-left: 20%;
-  margin-top: 1%;
+  width: 40%;
+  float: left;
+  margin-top: 2vh;
+  margin-left: 15vw;
+}
+.rightCardContainer{
+  margin-top: 2vh;
+  margin-right: 15vw;
+  width: 60%;
+  float: right;
+}
+.avatar{
+  align-items: center;
+  margin-left: 3vw;
+  margin-top: 2vh;
 }
 .mainContainer{
-  background-color: rgb(198, 241, 200);
-  width: 100%;
-  height: 100%;
+  background-color: rgb(52, 73, 85);
+  display: flex;
 }
 </style>
