@@ -9,6 +9,7 @@
     "deploy": "deploy.sh"
   },
   "dependencies": {
+    "@growthbunker/vuetimeline": "^0.1.17",
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
