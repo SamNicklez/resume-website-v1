@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { BootstrapVue, IconsPlugin, AvatarPlugin, ProgressPlugin, ListGroupPlugin} from 'bootstrap-vue'
+import { BootstrapVue, IconsPlugin, AvatarPlugin, ProgressPlugin, ListGroupPlugin, CarouselPlugin} from 'bootstrap-vue'
 import 'vuetify/dist/vuetify.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -9,6 +9,7 @@ import VueTimeline from "@growthbunker/vuetimeline";
 
 Vue.config.productionTip = false
 Vue.use(VueTimeline)
+Vue.use(CarouselPlugin)
 Vue.use(BootstrapVue)
 Vue.use(AvatarPlugin)
 Vue.use(IconsPlugin)
