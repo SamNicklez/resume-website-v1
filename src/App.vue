@@ -58,8 +58,9 @@ export default {
           title: 'Start new Internship!',
           date: new Date('05/30/2023'),
           description: `This summer, I have the opportunity to further my skills in Raytheons Digital Leadership Development Program where
-                        I will be exploring the world of project management in Denver, CO. I hope to gain additional knowledge in the aerospace
-                        and defense industry.
+                        I will be exploring the world of project management in Denver, CO. As a participant in this program,
+                         I will be joining a team of talented professionals who are dedicated to driving innovation and shaping the future of technology in defense.
+                          I am excited to contribute my own skills and ideas to this dynamic environment and learn from the wealth of knowledge and expertise that exists within Raytheon Technologies.
                           `,
           category: 'Job Update',
           photo: 'https://i.imgur.com/j8mTrs9.jpg',
@@ -68,9 +69,10 @@ export default {
         {
           title: 'Created this website',
           date: new Date('02/10/2023'),
-          description: `Started the creation of this very website! Using Vue.js I hope to show off my newly founded skills in
-          web design while also providing additional information that could not fit on my resume. All source code
-          for this project is on my GitHub!`,
+          description: `I created my own resume website using Vue.js, a popular JavaScript framework for building user interfaces.
+           I started by creating a basic template using HTML and CSS, and then used Vue.js to build out the various components of my website.
+          To make my website more visually appealing, I incorporated various Vue.js plugins and libraries, such as Bootstrap Vue for styling.
+           The source code can be found on my GitHub page!`,
           category: 'Project Update',
           photo: 'https://i.imgur.com/uVDq29v.jpg',
           color: 'blue',
@@ -100,19 +102,19 @@ export default {
         {
           title: 'Student Ambassador for Collins Aerospace',
           date: new Date('08/15/2022'),
-          description: `During my summer internship with Collins, I had the oppertunity to become a Student Ambassador
-          where I get to represent Collins Aerospace at the University of Iowa. During the semester, I had the pleasure
-          of connecting with students at Collins sponsored campus events such as resume workshops, seminars, and career fairs. This
-          also gave the unique oppertunity to speak with many of the hiring managers for Collins in the midwest area.`,
-          category: 'Extracurricular Update',
+          description: `Over the course of my summer internship with Collins, I was met with the opportunity of becomming a Student Ambassador, representing Collins Aerospace at the University of Iowa. Throughout the semester, I had the pleasure of engaging with fellow students at various campus events sponsored by Collins, including resume workshops, seminars, and career fairs. This invaluable experience also afforded me the opportunity to converse with numerous hiring managers for Collins in the Midwest region.`,
           photo: 'https://i.imgur.com/0fgu8JB.jpg',
           color: 'orange',
+          category: 'Extracurricular Update'
         },
         {
           title: 'Started Summer Internship with Collins Aerospace',
           date: new Date('05/16/2022'),
-          description: `Started my first ever internship as a Software Engineer at Collins Aerospace where I focused
-          on making existing manufacturing processes more efficient. [Add more info here]`,
+          description: `I am excited to share my summer internship experience at Collins Aerospace. During my time there, I had the opportunity to work on a range of challenging projects that helped me develop my technical skills and problem-solving abilities.
+                        I had the privilege of leading the migration of critical server information and developing data-focused software for improving warehouse efficiency.
+                        My experience also involved facilitating daily infrastructure operations, such as diagnosing software and hardware issues, debugging code, upgrading server hardware, and general IT maintenance.
+                        Working at Collins Aerospace was an invaluable opportunity that allowed me to develop new skills, collaborate with diverse teams, and make a tangible difference in the organization's operations.
+                        I am grateful for the chance to have worked at Collins Aerospace and am excited to leverage the skills I developed during my internship in my future endeavors.`,
           category: 'Job Update',
           photo: 'https://i.imgur.com/fD9XUtg.jpg',
           color: 'red',
@@ -120,17 +122,26 @@ export default {
         {
           title: 'Wordle Software Design Project',
           date: new Date('05/1/2022'),
-          description: `Our final project in ECE:3330: Intro to Software Design where a group of two other students and I
-          created our own rendition the New York Times game 'Wordle'. This project was coded [FINISH DESCRIPTION]. Source
-           code can be found on my GitHub page!`,
-          category: 'Project Update',
+          description: `Our rendition of the New York Times game 'Wordle' is a word guessing game where the player has to guess a five-letter word within six attempts. The game provides feedback on each guess by indicating the number of correct letters in the right position (green), correct letters in the wrong position (yellow), and incorrect letters (grey).
+          The project was implemented in Java using the JavaFX framework and SceneBuilder for the user interface design. We also used SQL to store player data such as scores and usernames. The application was designed to have multiple user accounts, each with their own high scores and game progress.
+          Our project was a team effort, with each team member contributing to different aspects of the project, such as coding, design, and testing.
+          The source code for our project can be found on my GitHub page, along with documentation and instructions on how to run the application.`,
           photo: '',
           color: 'blue',
+          category: 'Project Update',
         },
         {
           title: 'Vice President of The University of Iowa League of Legends eSports Club',
           date: new Date('03/1/2022'),
-          description: 'After one year of being the events manager for the club, [Insert more stuff here]',
+          description: `I'm excited to share that I've recently switched over to become the Vice President
+                         of University of Iowa's League of Legends eSports club! As an Events Manager
+                          for the past year, 
+                         I've had the pleasure of organizing events for the club. 
+                         I'm now looking forward to taking on a more significant leadership 
+                         role and working with the club's members, officers, and advisors to 
+                         continue developing and growing the eSports community at our college.
+                        I'm passionate about eSports, and I'm excited to contribute to creating 
+                        a welcoming and inclusive environment for all members!`,
           category: 'Extracurricular Update',
           photo: 'https://i.imgur.com/0yNW4hc.jpg',
           color: 'orange',
@@ -211,7 +222,7 @@ export default {
       } else {
         return false
       }
-    }
+    },
   },
 }
 </script>
@@ -304,7 +315,7 @@ export default {
             <div v-for="title in events" :key="title.id">
               <vue-timeline-update theme="light" :date="title.date" :title="title.title" :description="title.description"
                 :thumbnail="title.photo" :category="title.category" :icon="title.icon" :color="title.color" />
-          </div>
+            </div>
           </b-card>
         </div>
       </div>
@@ -312,7 +323,8 @@ export default {
   </div>
   <div v-else>
     <mobile>
-      Mobile device detected, please run in desktop mode while I am working on the mobile site :)
+      Mobile device detected, please run in desktop mode 
+      while I am working on the mobile site :)
     </mobile>
   </div>
 </template>
