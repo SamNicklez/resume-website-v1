@@ -1,5 +1,14 @@
 # vue-pages
 
+## Background
+```
+The goal for this project was to make a online cv/resume that anyone can adapt and use.
+Because of this there are some interesting design choices I wouldn't have made if I didn't
+keep the developer in mind. I specifically designed the application so that future developers do
+not have to touch the html and css to change my information, everything is stored in global variables in Javascript.
+```
+
+
 ## Pre-Project setup
 ```
 Install Node.js (Note: Version has to be 16 or lower to function)
@@ -36,7 +45,7 @@ npm run deploy
 
 ### Changing assets
 ```
-To change the icon logo, change favicon.ico in the public folder
+To change the icon logo, change favicon.png in the public folder
 To change the resume download, change snicklausResume.pdf to your desired resume (Note that you also will need to change the download path in App.vue for the changes to take effect)
 
 ```

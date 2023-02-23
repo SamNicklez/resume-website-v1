@@ -14,6 +14,13 @@ export default {
       linkedInURL: "https://www.linkedin.com/in/sam-nicklaus/", //URL user goes to on link click
       photoSrc: "https://i.imgur.com/hCDgktV.jpg", //Source for headshot photo at top of screen
       publicPath: process.env.BASE_URL, //Base url, used to grab resume.pdf
+      universityLogo: 'https://i.imgur.com/y7MGuUn.png', //Logo of the college
+      university: 'University of Iowa', //University you attend
+      major: 'Bachelor of Science in Engineering, Computer Science & Engineering', //Your current major
+      focusArea: 'Focus Area in Big Data & Machine Learning', //Focus area
+      minor: 'Minor in Mathematics', //Minor
+      dateAttending: 'August 2020 - May 2024', //Date you are attending college
+      resumeDownload: 'snicklausResume.pdf', //The resume that gets downloaded on click
       //Text that is displayed at the top of the right card
       biotext: [
         {
@@ -26,17 +33,6 @@ export default {
           text: `With my passion for technology, I am excited to contribute my skills and knowledge to any team I join. I am eager to continue learning and growing in my career and am open to new challenges and opportunities.`
         }
       ],
-      //Images and text that can be shown to show off your hobbies
-      images: [
-        {
-          link: 'https://i.imgur.com/Y1gDzjX.jpg',
-          description: 'My Hobbies',
-        },
-        {
-          link: 'https://i.imgur.com/0yNW4hc.jpg',
-          description: 'eSports Coaching'
-        }
-      ],
       //Formats timeline
       //Title: Displayed at the top of the event
       //description: description of the event
@@ -45,6 +41,7 @@ export default {
       //photo: provided a link, the photo will be displayed alongside the event
       //color: changes the color theme of the event, available colors include
       //| "black" | "blue" | "green" | "orange" | "purple" | "red" | "turquoise" | "white"
+      //icon: pack can be found here https://fonts.google.com/icons?selected=Material+Icons
       events: [
         {
           title: 'Note',
@@ -53,6 +50,7 @@ export default {
           category: 'Project Update',
           photo: '',
           color: 'purple',
+          icon:'web'
         },
         {
           title: 'Start new Internship!',
@@ -65,6 +63,7 @@ export default {
           category: 'Job Update',
           photo: 'https://i.imgur.com/j8mTrs9.jpg',
           color: 'red',
+          icon: 'badge'
         },
         {
           title: 'Created this website',
@@ -76,6 +75,7 @@ export default {
           category: 'Project Update',
           photo: 'https://i.imgur.com/uVDq29v.jpg',
           color: 'blue',
+          icon:'web'
         },
         {
           title: 'Research at The University of Iowa',
@@ -87,6 +87,7 @@ export default {
           category: 'Project Update',
           photo: 'https://i.imgur.com/mVtefZE.jpg',
           color: 'green',
+          icon: 'memory'
         },
         {
           title: 'Switched to part-time with Collins Aerospace',
@@ -98,6 +99,7 @@ export default {
           category: 'Job Update',
           photo: 'https://i.imgur.com/fD9XUtg.jpg',
           color: 'red',
+          icon: 'badge'
         },
         {
           title: 'Student Ambassador for Collins Aerospace',
@@ -105,7 +107,8 @@ export default {
           description: `Over the course of my summer internship with Collins, I was met with the opportunity of becomming a Student Ambassador, representing Collins Aerospace at the University of Iowa. Throughout the semester, I had the pleasure of engaging with fellow students at various campus events sponsored by Collins, including resume workshops, seminars, and career fairs. This invaluable experience also afforded me the opportunity to converse with numerous hiring managers for Collins in the Midwest region.`,
           photo: 'https://i.imgur.com/0fgu8JB.jpg',
           color: 'orange',
-          category: 'Extracurricular Update'
+          category: 'Extracurricular Update',
+          icon: 'supervisor_account',
         },
         {
           title: 'Started Summer Internship with Collins Aerospace',
@@ -118,6 +121,7 @@ export default {
           category: 'Job Update',
           photo: 'https://i.imgur.com/fD9XUtg.jpg',
           color: 'red',
+          icon: 'badge'
         },
         {
           title: 'Wordle Software Design Project',
@@ -129,6 +133,7 @@ export default {
           photo: '',
           color: 'blue',
           category: 'Project Update',
+          icon: 'extension'
         },
         {
           title: 'Vice President of The University of Iowa League of Legends eSports Club',
@@ -145,6 +150,7 @@ export default {
           category: 'Extracurricular Update',
           photo: 'https://i.imgur.com/0yNW4hc.jpg',
           color: 'orange',
+          icon: 'sports_esports'
         },
 
       ],
@@ -215,6 +221,10 @@ export default {
       ],
     }
   },
+  created(){
+    let uri = window.location.href.split('?');
+    console.log(uri);
+  },
   methods: {
     isMobile() {
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -229,10 +239,10 @@ export default {
 
 <template>
   <div v-if="!isMobile()">
-    <desktop>
-      <div class="mainContainer">
-        <div class="topContainer">
-          <div class="leftCardContainer">
+
+      <div class="mainContainer" style="background-color: rgb(52, 73, 85);">
+        <div style="display: flex;">
+          <div class="desktopLeftContainer">
             <b-card style=" height: 100%;">
               <b-avatar :src="photoSrc" size="15rem"></b-avatar>
               <b-card-body>
@@ -272,36 +282,36 @@ export default {
                   <b-list-group-item>
                     <p class="h4 mb-2"><b-icon icon="folder-fill"></b-icon> Full Resume</p>
                     <b-card-sub-title class="mb-2"><a :href="linkedInURL">
-                        <a :href="`${publicPath}snicklausResume.pdf`" download="snicklausResume.pdf">Click to Download</a>
+                        <a :href="`${publicPath}${resumeDownload}`" :download="resumeDownload">Click to Download</a>
                       </a></b-card-sub-title>
                   </b-list-group-item>
                 </b-list-group>
               </b-card-body>
             </b-card>
           </div>
-          <div class="rightCardContainer">
+          <div class="desktopRightContainer">
             <b-card title="Bio" sub-title="Who Am I?" style=" height: 100%;">
               <b-card-text>
                 <div v-for="text in biotext" :key="text.id">
                   {{ text.text }}<br><br>
                 </div>
               </b-card-text>
-              <b-card title="Education" sub-title="August 2020 - May 2024" img-src="https://i.imgur.com/y7MGuUn.png"
-                img-height="150" img-width="150" class="cardFormat" img-alt="Card image" img-right>
+              <b-card title="Education" sub-title="August 2020 - May 2024" :img-src="universityLogo"
+                img-height="150" img-width="150" class="desktopCardFormat" img-alt="Card image" img-right>
                 <b-card-text>
-                  <b>University of Iowa</b>
+                  <b>{{ this.university }}</b>
                   <br>
-                  <i>Bachelor of Science in Engineering, Computer Science & Engineering</i>
+                  <i>{{ this.major }}</i>
                   <br>
-                  <i>Focus Area in Big Data & Machine Learning</i>
+                  <i>{{ this.focusArea }}</i>
                   <br>
-                  <i>Minor in Mathematics</i>
+                  <i>{{ this.minor }}</i>
                 </b-card-text>
               </b-card>
-              <b-card title="Skills" sub-title="Languages and Frameworks (% are not absolute)" class="cardFormat"
+              <b-card title="Skills" sub-title="Languages and Frameworks (% are not absolute)" class="desktopCardFormat"
                 horizontal>
-                <b-card-group deck v-for="name in languages" :key="name">
-                  <b-list-group-item class="languages">
+                <b-card-group deck v-for="name in languages" :key="name.id">
+                  <b-list-group-item style="  margin-bottom: 2.55vh; float: left; width: 50%;">
                     {{ name.name }}
                     <b-progress :value="name.progress" class="w-50" variant="secondary" height="5px"></b-progress>
                   </b-list-group-item>
@@ -311,7 +321,7 @@ export default {
           </div>
         </div>
         <div class="bottomCard">
-          <b-card title="Timeline" class="cardFormat">
+          <b-card title="My History" class="desktopTimeline">
             <div v-for="title in events" :key="title.id">
               <vue-timeline-update theme="light" :date="title.date" :title="title.title" :description="title.description"
                 :thumbnail="title.photo" :category="title.category" :icon="title.icon" :color="title.color" />
@@ -319,65 +329,35 @@ export default {
           </b-card>
         </div>
       </div>
-    </desktop>
   </div>
   <div v-else>
-    <mobile>
       Mobile device detected, please run in desktop mode 
       while I am working on the mobile site :)
-    </mobile>
   </div>
 </template>
 
 <style>
-.bottomCard {
+.desktopTimeline {
   width: 80%;
   margin-left: 10%;
   margin-bottom: 2.5vh;
   margin-top: 2.5vh;
 }
-
-.languages {
-  margin-bottom: 2.55vh;
-  float: left;
-  width: 50%;
-}
-
-.cardFormat {
+.desktopCardFormat {
   margin-top: 2.5vh;
   margin-bottom: 2.5vh;
 }
-
-.mb-5 {
-  margin-left: 1vh;
-  vertical-align: baseline;
-}
-
-.progressContainer {
-  margin-top: 1vh;
-  display: flex;
-}
-
-.topContainer {
-  display: flex;
-}
-
-.leftCardContainer {
+.desktopLeftContainer {
   margin-top: 2vh;
   min-width: 24.5%;
   margin-left: 10%;
   text-align: center;
   margin-right: 1%;
 }
-
-.rightCardContainer {
+.desktopRightContainer {
   float: right;
   margin-top: 2vh;
   margin-right: 10%;
   min-width: 49.5%;
-}
-
-.mainContainer {
-  background-color: rgb(52, 73, 85);
 }
 </style>
