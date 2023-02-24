@@ -7,7 +7,12 @@ Because of this there are some interesting design choices I wouldn't have made i
 keep the developer in mind. I specifically designed the application so that future developers do
 not have to touch the html and css to change my information, everything is stored in global variables in Javascript.
 ```
-
+## Background
+```
+Note that your phone number and resume download is hidden unless your url at the end
+has "?recruit". This is for privacy reasons and prevents individuals from accessing your
+personal information
+```
 
 ## Pre-Project setup
 ```
