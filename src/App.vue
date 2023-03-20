@@ -21,7 +21,7 @@ export default {
       minor: 'Minor in Mathematics', //Minor
       dateAttending: 'August 2020 - May 2024', //Date you are attending college
       resumeDownload: 'snicklausResume.pdf', //The resume that gets downloaded on click
-      recruiterSite: false,
+      recruiterSite: false, //If set to true, website will display phone number and resume download link
       //Text that is displayed at the top of the right card
       biotext: [
         {
@@ -52,19 +52,6 @@ export default {
           photo: '',
           color: 'purple',
           icon: 'web'
-        },
-        {
-          title: 'Start new Internship!',
-          date: new Date('05/30/2023'),
-          description: `This summer, I have the opportunity to further my skills in Raytheons Digital Leadership Development Program where
-                        I will be exploring the world of project management in Denver, CO. As a participant in this program,
-                         I will be joining a team of talented professionals who are dedicated to driving innovation and shaping the future of technology in defense.
-                          I am excited to contribute my own skills and ideas to this dynamic environment and learn from the wealth of knowledge and expertise that exists within Raytheon Technologies.
-                          `,
-          category: 'Job Update',
-          photo: 'https://i.imgur.com/j8mTrs9.jpg',
-          color: 'red',
-          icon: 'badge'
         },
         {
           title: 'Created this website',
@@ -224,13 +211,17 @@ export default {
   },
   created() {
     let uri = window.location.href.split('?');
-    if(uri.length > 1){
-      if(uri[1].includes('recruit')){
+    if (uri.length > 1) {
+      if (uri[1].includes('recruit')) {
         this.recruiterSite = true;
       }
     }
   },
+
   methods: {
+    /**
+     * checks if the user is using a mobile device or not
+     */
     isMobile() {
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         return true
@@ -244,7 +235,6 @@ export default {
 
 <template>
   <div v-if="!isMobile()">
-
     <div class="mainContainer" style="background-color: rgb(52, 73, 85);">
       <div style="display: flex;">
         <div class="desktopLeftContainer">
@@ -337,98 +327,101 @@ export default {
   </div>
   <div v-else style="background-color: rgb(52, 73, 85); padding: 20px;">
     <div>
-  <b-card no-body class="overflow-hidden" style="max-width: 540px;">
-    <b-row no-gutters>
-      <b-col md="6">
-        <b-card-img :src="photoSrc" alt="Image" class="rounded-0"></b-card-img>
-      </b-col>
-      <b-col md="6" style="text-align: center;">
-        <b-card-body title="Samuel Nicklaus">
-          <b-card title="Education" sub-title="August 2020 - May 2024"
-              style="text-align: left; margin-bottom: 2.5vh;" img-alt="Card image">
-              <b-card-text>
-                <small>
-                <b>{{ this.university }}</b>
-                <br>
-                <i>{{ this.major }}</i>
-                <br>
-                <i>{{ this.focusArea }}</i>
-                <br>
-                <i>{{ this.minor }}</i>
-              </small>
-              </b-card-text>
-            </b-card>
-            <b-card title="Bio" sub-title="Who Am I?" style="text-align: left;">
-            <b-card-text>
-              <div v-for="text in biotext" :key="text.id">
-                <small>{{ text.text }}<br><br></small>
-              </div>
-            </b-card-text>
-            </b-card>
-            <b-card style="margin-top: 2.5vh; margin-bottom: 2.5vh;">
-            <b-card-body>
-              <b-card-sub-title class="h5 mb-2">Info</b-card-sub-title>
-              <b-list-group flush>
-                <b-list-group-item>
-                  <p class="h4 mb-2"><b-icon icon="envelope-fill"></b-icon> Email</p>
-                  <b-card-sub-title class="mb-2">{{ email }}</b-card-sub-title>
-                </b-list-group-item>
-                <b-list-group-item v-if="recruiterSite">
-                  <p class="h4 mb-2"><b-icon icon="telephone-fill"></b-icon> Phone</p>
-                  <b-card-sub-title class="mb-2">{{ phone }}</b-card-sub-title>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <p class="h4 mb-2"><b-icon icon="person-fill"></b-icon> Birthday</p>
-                  <b-card-sub-title class="mb-2">{{ bday }}</b-card-sub-title>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <p class="h4 mb-2"><b-icon icon="pin-map-fill"></b-icon> Residence</p>
-                  <b-card-sub-title class="mb-2">{{ location }}</b-card-sub-title>
-                </b-list-group-item>
-              </b-list-group>
-              <b-card-sub-title class="h4 mb-2"> Socials</b-card-sub-title>
-              <b-list-group flush>
-                <b-list-group-item>
-                  <p class="h4 mb-2"><b-icon icon="github"></b-icon> GitHub</p>
-                  <b-card-sub-title class="mb-2"><a :href="gitURL" target="_blank"> {{ gitDisplay }}
-                    </a></b-card-sub-title>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <p class="h4 mb-2"><b-icon icon="linkedin"></b-icon> LinkedIn</p>
-                  <b-card-sub-title class="mb-2"><a :href="linkedInURL" target="_blank">{{
-                    linkedInDisplay
-                  }}</a></b-card-sub-title>
-                </b-list-group-item>
-                <b-list-group-item v-if="recruiterSite">
-                  <p class="h4 mb-2"><b-icon icon="folder-fill"></b-icon> Full Resume</p>
-                  <b-card-sub-title class="mb-2"><a :href="linkedInURL">
-                      <a :href="`${publicPath}${resumeDownload}`" :download="resumeDownload">Click to Download</a>
-                    </a></b-card-sub-title>
-                </b-list-group-item>
-              </b-list-group>
+      <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+        <b-row no-gutters>
+          <b-col md="6">
+            <b-card-img :src="photoSrc" alt="Image" class="rounded-0"></b-card-img>
+          </b-col>
+          <b-col md="6" style="text-align: center;">
+            <b-card-body title="Samuel Nicklaus">
+              <b-card title="Education" sub-title="August 2020 - May 2024" style="text-align: left; margin-bottom: 2.5vh;"
+                img-alt="Card image">
+                <b-card-text>
+                  <small>
+                    <b>{{ this.university }}</b>
+                    <br>
+                    <i>{{ this.major }}</i>
+                    <br>
+                    <i>{{ this.focusArea }}</i>
+                    <br>
+                    <i>{{ this.minor }}</i>
+                  </small>
+                </b-card-text>
+              </b-card>
+              <b-card title="Bio" sub-title="Who Am I?" style="text-align: left;">
+                <b-card-text>
+                  <div v-for="text in biotext" :key="text.id">
+                    <small>{{ text.text }}<br><br></small>
+                  </div>
+                </b-card-text>
+              </b-card>
+              <b-card style="margin-top: 2.5vh; margin-bottom: 2.5vh;">
+                <b-card-body>
+                  <b-card-sub-title class="h5 mb-2">Info</b-card-sub-title>
+                  <b-list-group flush>
+                    <b-list-group-item>
+                      <p class="h4 mb-2"><b-icon icon="envelope-fill"></b-icon> Email</p>
+                      <b-card-sub-title class="mb-2">{{ email }}</b-card-sub-title>
+                    </b-list-group-item>
+                    <b-list-group-item v-if="recruiterSite">
+                      <p class="h4 mb-2"><b-icon icon="telephone-fill"></b-icon> Phone</p>
+                      <b-card-sub-title class="mb-2">{{ phone }}</b-card-sub-title>
+                    </b-list-group-item>
+                    <b-list-group-item>
+                      <p class="h4 mb-2"><b-icon icon="person-fill"></b-icon> Birthday</p>
+                      <b-card-sub-title class="mb-2">{{ bday }}</b-card-sub-title>
+                    </b-list-group-item>
+                    <b-list-group-item>
+                      <p class="h4 mb-2"><b-icon icon="pin-map-fill"></b-icon> Residence</p>
+                      <b-card-sub-title class="mb-2">{{ location }}</b-card-sub-title>
+                    </b-list-group-item>
+                  </b-list-group>
+                  <b-card-sub-title class="h4 mb-2"> Socials</b-card-sub-title>
+                  <b-list-group flush>
+                    <b-list-group-item>
+                      <p class="h4 mb-2"><b-icon icon="github"></b-icon> GitHub</p>
+                      <b-card-sub-title class="mb-2"><a :href="gitURL" target="_blank"> {{ gitDisplay }}
+                        </a></b-card-sub-title>
+                    </b-list-group-item>
+                    <b-list-group-item>
+                      <p class="h4 mb-2"><b-icon icon="linkedin"></b-icon> LinkedIn</p>
+                      <b-card-sub-title class="mb-2"><a :href="linkedInURL" target="_blank">{{
+                        linkedInDisplay
+                      }}</a></b-card-sub-title>
+                    </b-list-group-item>
+                    <b-list-group-item v-if="recruiterSite">
+                      <p class="h4 mb-2"><b-icon icon="folder-fill"></b-icon> Full Resume</p>
+                      <b-card-sub-title class="mb-2"><a :href="linkedInURL">
+                          <a :href="`${publicPath}${resumeDownload}`" :download="resumeDownload">Click to Download</a>
+                        </a></b-card-sub-title>
+                    </b-list-group-item>
+                  </b-list-group>
+                </b-card-body>
+              </b-card>
+              <b-card title="Skills" sub-title="Languages and Frameworks" style="margin-top: 2.5vh;">
+                <b-card-text>
+                  <div v-for="name in languages" :key="name.id"
+                    style="  display:inline-block; margin-right:10px; margin-bottom: 5px;">
+                    <b-button v-b-popover.hover.top="name.progress + '/100'" :title="name.name + ' Proficiency'" pill
+                      variant="secondary" size="sm">{{ name.name }}</b-button>
+                  </div>
+                </b-card-text>
+              </b-card>
             </b-card-body>
-          </b-card>
-            <b-card title="Skills" sub-title="Languages and Frameworks" style="margin-top: 2.5vh;">
-            <b-card-text>
-              <div v-for="name in languages" :key="name.id" style="  display:inline-block; margin-right:10px; margin-bottom: 5px;">
-                <b-button v-b-popover.hover.top="name.progress + '/100'" :title="name.name + ' Proficiency'" pill variant="secondary" size="sm">{{ name.name }}</b-button>
+            <b-card-title>
+              Timeline
+            </b-card-title>
+            <div class="bottomCard" style="margin-left: 1vh; margin-right: 1vh;">
+              <div v-for="title in events" :key="title.id">
+                <vue-timeline-update theme="light" :date="title.date" :title="title.title"
+                  :description="title.description" :thumbnail="title.photo" :category="title.category" :icon="title.icon"
+                  :color="title.color" />
               </div>
-            </b-card-text>
-            </b-card>
-        </b-card-body>
-        <b-card-title>
-          Timeline
-        </b-card-title>
-        <div class="bottomCard" style="margin-left: 1vh; margin-right: 1vh;">
-          <div v-for="title in events" :key="title.id">
-            <vue-timeline-update theme="light" :date="title.date" :title="title.title" :description="title.description"
-              :thumbnail="title.photo" :category="title.category" :icon="title.icon" :color="title.color" />
-          </div>
-      </div>
-      </b-col>
-    </b-row>
-  </b-card>
-</div>
+            </div>
+          </b-col>
+        </b-row>
+      </b-card>
+    </div>
   </div>
 </template>
 
